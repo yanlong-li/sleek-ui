@@ -1,13 +1,36 @@
 import { MessageBox } from "../widgets/message-box.slint";
+import { VerticalBox } from "std-widgets.slint";
+import { ButtonType } from "../widgets/button.slint";
+
+import { Title } from "title.slint";
 export component MessageBox {
-    height: mb.height;
-    width: mb.width;
-    mb := MessageBox {
-        title: "MessageBox Title";
-        message: "MessageBox Content";
-        confirm-buttony-text: "Confirm";
-        clicked => {
-            debug("click");
+    VerticalBox {
+
+        title := Title {
+            text: "Message Box";
+        }
+
+        mb := MessageBox {
+            title: "MessageBox Title";
+            message: "MessageBox Content";
+            confirm-button-text: "Ok";
+            confirm-clicked => {
+                debug("confirm clicked");
+            }
+        }
+
+        mb2 := MessageBox {
+            title: "MessageBox Title";
+            message: "MessageBox Content";
+            show-cancel-button: true;
+            confirm-button-type: ButtonType.Success;
+            cancel-button-type: ButtonType.Danger;
+            confirm-clicked => {
+                debug("confirm clicked");
+            }
+            cancel-clicked => {
+                debug("cancel clicked")
+            }
         }
     }
 }

@@ -4,6 +4,10 @@
 
 Color scheme from element UI
 
+## Description
+
+    UI component library based on the slint framework
+
 ### Button Example
 
 ![img.png](images/buttons.png)
@@ -20,6 +24,8 @@ Color scheme from element UI
 | text      | Button display text | string      |         |                                             |
 | icon      | Button display icon | @image-url  |         |                                             |
 
+#### Example Code
+
 ```slint
 component example{
     Button {
@@ -30,5 +36,46 @@ component example{
         disabled: false;
         clicked => {}
     }
+}
+```
+
+### Message Box Example
+
+#### Attributes
+
+| Attribute | Description         | type        | Default | Accepted values                             |
+|-----------|---------------------|-------------|---------|---------------------------------------------|
+|title|head title|string|||
+|message|body content|string|||
+|confirm-button-text| Confirm button text |string|Confirm||
+|show-cancel-button| Display the cancel button |bool|false||
+|cancel-button-text| Cancel button text|string|Cancel||
+
+#### Example Code
+
+```slint
+components example{
+        MessageBox {
+            title: "MessageBox Title";
+            message: "MessageBox Content";
+            confirm-button-text: "Ok";
+            confirm-clicked => {
+                debug("confirm clicked");
+            }
+        }
+
+        MessageBox {
+            title: "MessageBox Title";
+            message: "MessageBox Content";
+            show-cancel-button: true;
+            confirm-button-type: ButtonType.Success;
+            cancel-button-type: ButtonType.Danger;
+            confirm-clicked => {
+                debug("confirm clicked");
+            }
+            cancel-clicked => {
+                debug("cancel clicked")
+            }
+        }
 }
 ```

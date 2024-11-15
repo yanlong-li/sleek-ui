@@ -1,11 +1,11 @@
 export enum ButtonSize { Default,Medium ,Small ,Mini }
 export enum ButtonType { Default,Primary,Success,Info,Warning,Danger }
 export enum ButtonRound { Default,Round,Circle}
-import { DefaultTheme } from "../themes/index.slint";
-
-export component Slot { }
+import { Theme,Themes } from "../themes/index.slint";
 
 export component Button inherits Rectangle {
+    themes := Themes { }
+
     in property <ButtonSize> size: Default;
     in property <ButtonType> type: Default;
     in property <string> text: "";
@@ -15,15 +15,12 @@ export component Button inherits Rectangle {
     in property <color> background-color;
     in property <bool> plain: false;
     in property <image> icon;
-
-    thema := DefaultTheme { }
-
+    in property <Theme> theme: themes.theme;
     height: size == ButtonSize.Medium ? 36px : size == ButtonSize.Small ? 32px : size == ButtonSize.Mini ? 28px : 40px;
     width: self.round == ButtonRound.Circle ? self.height : txt.preferred-width + 24px;
     border-radius: round == ButtonRound.Default ? 8px : round == ButtonRound.Round ? self.height / 2 : self.height / 2;
     border-width: 1px;
     border-color: calcBordeColor();
-
     background: calcBackground();
     txt := Text {
         text: text;
@@ -32,7 +29,7 @@ export component Button inherits Rectangle {
         font-size: size == ButtonSize.Medium ? 16px : size == ButtonSize.Small ? 14px : size == ButtonSize.Mini ? 12px : 18px;
     }
 
-    img := Image {
+    Image {
         source: icon;
         visible: icon.width > 0 && icon.height > 0;
         width: parent.width * 60%;
@@ -51,153 +48,152 @@ export component Button inherits Rectangle {
         if (disabled) {
             if (plain) {
                 if (type == ButtonType.Primary) {
-                    return thema.Colors.PrimaryThird;
+                    return theme.Colors.PrimaryThird;
                 }
                 if (type == ButtonType.Success) {
-                    return thema.Colors.SuccessThird;
+                    return theme.Colors.SuccessThird;
                 }
                 if (type == ButtonType.Info) {
-                    return thema.Colors.InfoThird;
+                    return theme.Colors.InfoThird;
                 }
                 if (type == ButtonType.Warning) {
-                    return thema.Colors.WarningThird;
+                    return theme.Colors.WarningThird;
                 }
                 if (type == ButtonType.Danger) {
-                    return thema.Colors.DangerThird;
+                    return theme.Colors.DangerThird;
                 }
             }
             if (type == ButtonType.Primary) {
-                return thema.Colors.PrimarySecound;
+                return theme.Colors.PrimarySecound;
             }
             if (type == ButtonType.Success) {
-                return thema.Colors.SuccessSecound;
+                return theme.Colors.SuccessSecound;
             }
             if (type == ButtonType.Info) {
-                return thema.Colors.InfoSecound;
+                return theme.Colors.InfoSecound;
             }
             if (type == ButtonType.Warning) {
-                return thema.Colors.WarningSecound;
+                return theme.Colors.WarningSecound;
             }
             if (type == ButtonType.Danger) {
-                return thema.Colors.DangerSecound;
+                return theme.Colors.DangerSecound;
             }
-            return thema.Colors.Back;
+            return theme.Colors.Back;
         }
         if (plain) {
             if (type == ButtonType.Primary) {
-                return thema.Colors.PrimarySecound;
+                return theme.Colors.PrimarySecound;
             }
             if (type == ButtonType.Success) {
-                return thema.Colors.SuccessSecound;
+                return theme.Colors.SuccessSecound;
             }
             if (type == ButtonType.Info) {
-                return thema.Colors.InfoSecound;
+                return theme.Colors.InfoSecound;
             }
             if (type == ButtonType.Warning) {
-                return thema.Colors.WarningSecound;
+                return theme.Colors.WarningSecound;
             }
             if (type == ButtonType.Danger) {
-                return thema.Colors.DangerSecound;
+                return theme.Colors.DangerSecound;
             }
-            return thema.Colors.Back;
+            return theme.Colors.Back;
         }
         if (type == ButtonType.Primary) {
-            return thema.Colors.Primary;
+            return theme.Colors.Primary;
         }
         if (type == ButtonType.Success) {
-            return thema.Colors.Success;
+            return theme.Colors.Success;
         }
         if (type == ButtonType.Info) {
-            return thema.Colors.Info;
+            return theme.Colors.Info;
         }
         if (type == ButtonType.Warning) {
-            return thema.Colors.Warning;
+            return theme.Colors.Warning;
         }
         if (type == ButtonType.Danger) {
-            return thema.Colors.Danger;
+            return theme.Colors.Danger;
         }
-        return thema.Colors.Back;
+        return theme.Colors.Back;
     }
     function calcTextColor() -> color {
         if (disabled) {
             if (plain) {
                 if (type == ButtonType.Primary) {
-                    return thema.Colors.PrimarySecound;
+                    return theme.Colors.PrimarySecound;
                 }
                 if (type == ButtonType.Success) {
-                    return thema.Colors.SuccessSecound;
+                    return theme.Colors.SuccessSecound;
                 }
                 if (type == ButtonType.Info) {
-                    return thema.Colors.InfoSecound;
+                    return theme.Colors.InfoSecound;
                 }
                 if (type == ButtonType.Warning) {
-                    return thema.Colors.WarningSecound;
+                    return theme.Colors.WarningSecound;
                 }
                 if (type == ButtonType.Danger) {
-                    return thema.Colors.DangerSecound;
+                    return theme.Colors.DangerSecound;
                 }
-                return thema.Colors.Placeholder;
+                return theme.Colors.Placeholder;
             }
-            return type == ButtonType.Default ? thema.Colors.Placeholder : thema.Colors.Back;
+            return type == ButtonType.Default ? theme.Colors.Placeholder : theme.Colors.Back;
         }
         if (plain) {
             if (type == ButtonType.Primary) {
-                return thema.Colors.Primary;
+                return theme.Colors.Primary;
             }
             if (type == ButtonType.Success) {
-                return thema.Colors.Success;
+                return theme.Colors.Success;
             }
             if (type == ButtonType.Info) {
-                return thema.Colors.Info;
+                return theme.Colors.Info;
             }
             if (type == ButtonType.Warning) {
-                return thema.Colors.Warning;
+                return theme.Colors.Warning;
             }
             if (type == ButtonType.Danger) {
-                return thema.Colors.Danger;
+                return theme.Colors.Danger;
             }
-            return type == ButtonType.Default ? thema.Colors.Front : thema.Colors.Back;
+            return type == ButtonType.Default ? theme.Colors.Front : theme.Colors.Back;
         }
-        return type == ButtonType.Default ? thema.Colors.Front : thema.Colors.Back;
+        return type == ButtonType.Default ? theme.Colors.Front : theme.Colors.Back;
     }
-
     function calcBordeColor() -> color {
         if (disabled) {
             if (type == ButtonType.Primary) {
-                return thema.Colors.PrimarySecound;
+                return theme.Colors.PrimarySecound;
             }
             if (type == ButtonType.Success) {
-                return thema.Colors.SuccessSecound;
+                return theme.Colors.SuccessSecound;
             }
             if (type == ButtonType.Info) {
-                return thema.Colors.InfoSecound;
+                return theme.Colors.InfoSecound;
             }
             if (type == ButtonType.Warning) {
-                return thema.Colors.WarningSecound;
+                return theme.Colors.WarningSecound;
             }
             if (type == ButtonType.Danger) {
-                return thema.Colors.DangerSecound;
+                return theme.Colors.DangerSecound;
             }
-            return thema.Colors.Placeholder;
+            return theme.Colors.Placeholder;
         }
         if (plain) {
             if (type == ButtonType.Primary) {
-                return thema.Colors.Primary;
+                return theme.Colors.Primary;
             }
             if (type == ButtonType.Success) {
-                return thema.Colors.Success;
+                return theme.Colors.Success;
             }
             if (type == ButtonType.Info) {
-                return thema.Colors.Info;
+                return theme.Colors.Info;
             }
             if (type == ButtonType.Warning) {
-                return thema.Colors.Warning;
+                return theme.Colors.Warning;
             }
             if (type == ButtonType.Danger) {
-                return thema.Colors.Danger;
+                return theme.Colors.Danger;
             }
-            return thema.Colors.Front;
+            return theme.Colors.Front;
         }
-        return type == ButtonType.Default ? thema.Colors.Front : thema.Colors.Back;
+        return type == ButtonType.Default ? theme.Colors.Front : theme.Colors.Back;
     }
 }

@@ -1,15 +1,30 @@
 import { Button,ButtonType,ButtonSize } from "button.slint";
-export component MessageBox inherits Rectangle {
-    height: confirmWidth.y + confirmWidth.height + 15px;
-    width: max(titleWidth.width,contentWidth.width,confirmWidth.width) + 30px;
-    border-radius: 8px;
-    background: white;
-    callback clicked <=> confirmWidth.clicked;
-    in property <string> title;
-    in property <string> message;
-    in property <string> confirm-buttony-text;
+import { Theme,Themes } from "../themes/index.slint";
 
-    titleWidth := Text {
+
+export component MessageBox inherits Rectangle {
+    _themes := Themes { }
+
+    height: confirmWidget.y + confirmWidget.height + 15px;
+    width: max(titleWidget.width,contentWidget.width,confirmWidget.width) + 30px;
+    border-radius: 8px;
+    background: theme.Colors.Back;
+
+    border-width: 1px;
+    border-color: theme.Colors.BorderBase;
+
+    callback confirm-clicked <=> confirmWidget.clicked;
+    callback cancel-clicked <=> cancelWidget.clicked;
+    in property <string> title: "Message Box Title";
+    in property <string> message: "Message Box Message";
+    in property <string> confirm-button-text: "Confirm";
+    in property <string> cancel-button-text: "Cancel";
+    in property <Theme> theme: _themes.theme;
+    in property <bool> show-cancel-button: false;
+    in property <ButtonType> confirm-button-type: ButtonType.Primary;
+    in property <ButtonType> cancel-button-type: ButtonType.Default;
+
+    titleWidget := Text {
         text: title;
         y: 15px;
         x: 15px;
@@ -17,8 +32,8 @@ export component MessageBox inherits Rectangle {
         font-size: 18px;
     }
 
-    contentWidth := Text {
-        y: titleWidth.height + 25px;
+    contentWidget := Text {
+        y: titleWidget.height + 25px;
         x: 15px;
         text: message;
         width: 300px;
@@ -27,11 +42,22 @@ export component MessageBox inherits Rectangle {
         font-weight: 400;
     }
 
-    confirmWidth := Button {
-        y: contentWidth.y + contentWidth.height + 25px;
-        x: parent.width - self.width - 15px;
-        text: confirm-buttony-text;
-        type: ButtonType.Primary;
+    cancelWidget := Button {
+        y: contentWidget.y + contentWidget.height + 25px;
+        x: confirmWidget.x - self.width - 15px;
+        text: cancel-button-text;
+        type: cancel-button-type;
         size: ButtonSize.Mini;
+        theme: theme;
+        visible: show-cancel-button;
+    }
+
+    confirmWidget := Button {
+        y: contentWidget.y + contentWidget.height + 25px;
+        x: parent.width - self.width - 15px;
+        text: confirm-button-text;
+        type: confirm-button-type;
+        size: ButtonSize.Mini;
+        theme: theme;
     }
 }

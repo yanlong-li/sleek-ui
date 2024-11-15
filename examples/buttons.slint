@@ -2,18 +2,20 @@ import { Button,ButtonType,ButtonSize,ButtonRound } from "../widgets/button.slin
 
 import { HorizontalBox,VerticalBox } from "std-widgets.slint";
 
+import { Themes,Theme } from "../themes/index.slint";
 
-export component Title inherits Text {
-    height: 30px;
-    font-weight: 600;
-    font-size: 24px;
-}
+import { Title,SubTitle } from "title.slint";
 
 export component Buttons {
+
     VerticalBox {
 
-        title := Title {
+        Title{
             text: "Buttons";
+        }
+
+        SubTitle {
+            text: "Default Buttons";
         }
 
         for size[index] in [ButtonSize.Default, ButtonSize.Medium, ButtonSize.Small, ButtonSize.Mini]: HorizontalBox {
@@ -46,9 +48,9 @@ export component Buttons {
                 round: Circle;
             }
         }
-
-        Title {
+        SubTitle {
             text: "Disabled Buttons";
+            font-size: 18px;
         }
 
         HorizontalBox {
@@ -66,7 +68,7 @@ export component Buttons {
             }
         }
 
-        Title {
+        SubTitle {
             text: "Plain Buttons";
         }
 

@@ -1,33 +1,40 @@
 import { ColorScheme } from "./schemas/colors.slint";
 
-export component DefaultTheme {
-    in-out property <ColorScheme> Colors: {
-        Primary: #409EFF,
-        PrimarySecound: #D9ECFF,
-        PrimaryThird: #ECF5FF,
-        PrimaryText: #303133,
-        Success: #67C23A,
-        SuccessSecound: #E1F3D8,
-        SuccessThird: #F0F9EB,
-        Warning: #E6A23C,
-        WarningSecound: #FAECD8,
-        WarningThird: #FDF6EC,
-        Danger: #F56C6C,
-        DangerSecound: #FDE2E2,
-        DangerThird: #FEF0F0,
-        Info: #909399,
-        InfoSecound: #E9E9EB,
-        InfoThird: #F4F4F5,
-        Back: #FFFFFF,
-        BackSecound: #FFFFFF,
-        Front: #000000,
-        FrontSecound: #C0C4CC,
-        RegulayText: #606266,
-        SecondaryText: #909399,
-        Placeholder: #C0C4CC,
-        BorderBase: #DCDFE6,
-        BorderLight:#E4E7ED,
-        BorderLighter:#EBEEF5,
-        BorderExtralight:#F2F6FC,
+
+export struct Theme {
+    Colors: ColorScheme,
+}
+export component Themes {
+    out property <Theme> default: {
+        Colors: {
+            Primary: #409EFF,
+            PrimarySecound: #D9ECFF,
+            PrimaryThird: #ECF5FF,
+            PrimaryText: #303133,
+            Success: #67C23A,
+            SuccessSecound: #E1F3D8,
+            SuccessThird: #F0F9EB,
+            Warning: #E6A23C,
+            WarningSecound: #FAECD8,
+            WarningThird: #FDF6EC,
+            Danger: #F56C6C,
+            DangerSecound: #FDE2E2,
+            DangerThird: #FEF0F0,
+            Info: #909399,
+            InfoSecound: #E9E9EB,
+            InfoThird: #F4F4F5,
+            Back: #FFFFFF,
+            BackSecound: #FFFFFF,
+            Front: #000000,
+            FrontSecound: #C0C4CC,
+            RegulayText: #606266,
+            SecondaryText: #909399,
+            Placeholder: #C0C4CC,
+            BorderBase: #DCDFE6,
+            BorderLight:#E4E7ED,
+            BorderLighter:#EBEEF5,
+            BorderExtralight:#F2F6FC,
+        }
     };
+    in-out property <Theme> theme: default;
 }

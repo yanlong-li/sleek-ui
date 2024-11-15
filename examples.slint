@@ -1,11 +1,13 @@
 import { Buttons } from "examples/buttons.slint";
 import { MessageBox } from "examples/message-box.slint";
 import { VerticalBox,ScrollView } from "std-widgets.slint";
+import { Theme,Themes } from "themes/index.slint";
 
 
 export component Examples inherits Window {
     width: 800px;
     height: 600px;
+
     VerticalBox {
         Text {
             text: "examples";
@@ -15,12 +17,14 @@ export component Examples inherits Window {
 
         ScrollView {
             VerticalBox {
-                Buttons { }
-                Buttons { }
+                Buttons {
+                }
+
+                Buttons {
+                }
 
                 MessageBox {
-
-                 }
+                }
             }
         }
     }
