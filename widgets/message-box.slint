@@ -1,0 +1,37 @@
+import { Button,ButtonType,ButtonSize } from "button.slint";
+export component MessageBox inherits Rectangle {
+    height: confirmWidth.y + confirmWidth.height + 15px;
+    width: max(titleWidth.width,contentWidth.width,confirmWidth.width) + 30px;
+    border-radius: 8px;
+    background: white;
+    callback clicked <=> confirmWidth.clicked;
+    in property <string> title;
+    in property <string> message;
+    in property <string> confirm-buttony-text;
+
+    titleWidth := Text {
+        text: title;
+        y: 15px;
+        x: 15px;
+        font-weight: 400;
+        font-size: 18px;
+    }
+
+    contentWidth := Text {
+        y: titleWidth.height + 25px;
+        x: 15px;
+        text: message;
+        width: 300px;
+        wrap: word-wrap;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    confirmWidth := Button {
+        y: contentWidth.y + contentWidth.height + 25px;
+        x: parent.width - self.width - 15px;
+        text: confirm-buttony-text;
+        type: ButtonType.Primary;
+        size: ButtonSize.Mini;
+    }
+}

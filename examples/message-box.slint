@@ -1,0 +1,13 @@
+import { MessageBox } from "../widgets/message-box.slint";
+export component MessageBox {
+    height: mb.height;
+    width: mb.width;
+    mb := MessageBox {
+        title: "MessageBox Title";
+        message: "MessageBox Content";
+        confirm-buttony-text: "Confirm";
+        clicked => {
+            debug("click");
+        }
+    }
+}
