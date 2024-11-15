@@ -1,0 +1,110 @@
+import { Button,ButtonType,ButtonSize,ButtonRound } from "../widgets/button.slint";
+
+import { HorizontalBox,VerticalBox } from "std-widgets.slint";
+
+
+export component Title inherits Text {
+    height: 30px;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+export component Buttons {
+    VerticalBox {
+
+        title := Title {
+            text: "Buttons";
+        }
+
+        for size[index] in [ButtonSize.Default, ButtonSize.Medium, ButtonSize.Small, ButtonSize.Mini]: HorizontalBox {
+            for type[index] in [
+                ButtonType.Default,
+                ButtonType.Primary,
+                ButtonType.Success,
+                ButtonType.Info,
+                ButtonType.Warning,
+                ButtonType.Danger
+            ]: Button {
+                size: size;
+                type: type;
+            }
+            Button {
+                size: size;
+                type: Default;
+                round: Round;
+                text: "Round Button";
+            }
+
+            Button {
+                size: size;
+                type: Default;
+                text: "Btn";
+                round: Circle;
+            }
+        }
+
+        Title {
+            text: "Disabled Buttons";
+        }
+
+        HorizontalBox {
+            for type[index] in [
+                ButtonType.Default,
+                ButtonType.Primary,
+                ButtonType.Success,
+                ButtonType.Info,
+                ButtonType.Warning,
+                ButtonType.Danger
+            ]: Button {
+                type: type;
+                disabled: true;
+            }
+            Button {
+                type: Default;
+                round: Round;
+                disabled: true;
+                text: "Round Button";
+            }
+
+            Button {
+                type: Default;
+                text: "Btn";
+                round: Circle;
+                disabled: true;
+            }
+        }
+
+        Title {
+            text: "Plain Buttons";
+        }
+
+        HorizontalBox {
+            for type[index] in [
+                ButtonType.Default,
+                ButtonType.Primary,
+                ButtonType.Success,
+                ButtonType.Info,
+                ButtonType.Warning,
+                ButtonType.Danger
+            ]: Button {
+                type: type;
+                plain: true;
+            }
+        }
+
+        HorizontalBox {
+            for type[index] in [
+                ButtonType.Default,
+                ButtonType.Primary,
+                ButtonType.Success,
+                ButtonType.Info,
+                ButtonType.Warning,
+                ButtonType.Danger
+            ]: Button {
+                type: type;
+                plain: true;
+                disabled: true;
+            }
+        }
+    }
+}

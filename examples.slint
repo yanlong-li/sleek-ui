@@ -1,0 +1,22 @@
+import { Buttons } from "examples/buttons.slint";
+import { VerticalBox,ScrollView } from "std-widgets.slint";
+
+
+export component Examples inherits Window {
+    width: 800px;
+    height: 600px;
+    VerticalBox {
+        Text {
+            text: "examples";
+            font-weight: 800;
+            font-size: 26px;
+        }
+
+        ScrollView {
+            VerticalBox {
+                Buttons { }
+
+            }
+        }
+    }
+}
