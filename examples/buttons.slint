@@ -27,6 +27,10 @@ export component Buttons {
             ]: Button {
                 size: size;
                 type: type;
+                text: "Button";
+                clicked => {
+                    debug(self.icon.width);
+                }
             }
             Button {
                 size: size;
@@ -38,7 +42,7 @@ export component Buttons {
             Button {
                 size: size;
                 type: Default;
-                text: "Btn";
+                icon: @image-url("home.svg");
                 round: Circle;
             }
         }
@@ -57,19 +61,7 @@ export component Buttons {
                 ButtonType.Danger
             ]: Button {
                 type: type;
-                disabled: true;
-            }
-            Button {
-                type: Default;
-                round: Round;
-                disabled: true;
-                text: "Round Button";
-            }
-
-            Button {
-                type: Default;
-                text: "Btn";
-                round: Circle;
+                text: "Button";
                 disabled: true;
             }
         }
@@ -88,6 +80,7 @@ export component Buttons {
                 ButtonType.Danger
             ]: Button {
                 type: type;
+                text: "Button";
                 plain: true;
             }
         }
@@ -103,6 +96,7 @@ export component Buttons {
             ]: Button {
                 type: type;
                 plain: true;
+                text: "Button";
                 disabled: true;
             }
         }

@@ -3,32 +3,40 @@ export enum ButtonType { Default,Primary,Success,Info,Warning,Danger }
 export enum ButtonRound { Default,Round,Circle}
 import { DefaultTheme } from "../themes/index.slint";
 
+export component Slot { }
+
 export component Button inherits Rectangle {
     in property <ButtonSize> size: Default;
     in property <ButtonType> type: Default;
-    in property <string> text: "Button";
+    in property <string> text: "";
     in property <ButtonRound> round: Default;
     in property <bool> disabled: false;
     callback clicked();
     in property <color> background-color;
     in property <bool> plain: false;
+    in property <image> icon;
 
     thema := DefaultTheme { }
 
     height: size == ButtonSize.Medium ? 36px : size == ButtonSize.Small ? 32px : size == ButtonSize.Mini ? 28px : 40px;
-    width: self.round == ButtonRound.Circle ? self.height : txt.preferred-width + 20px;
-    padding: 10px;
+    width: self.round == ButtonRound.Circle ? self.height : txt.preferred-width + 24px;
     border-radius: round == ButtonRound.Default ? 8px : round == ButtonRound.Round ? self.height / 2 : self.height / 2;
     border-width: 1px;
     border-color: calcBordeColor();
 
     background: calcBackground();
-
     txt := Text {
         text: text;
+        visible: text != "";
         color: calcTextColor();
-
         font-size: size == ButtonSize.Medium ? 16px : size == ButtonSize.Small ? 14px : size == ButtonSize.Mini ? 12px : 18px;
+    }
+
+    img := Image {
+        source: icon;
+        visible: icon.width > 0 && icon.height > 0;
+        width: parent.width * 60%;
+        height: parent.width * 60%;
     }
 
     ta := TouchArea {
