@@ -1,0 +1,31 @@
+
+import { Themes,Theme } from "../themes/index.slint";
+export component Switch inherits Rectangle {
+    themes := Themes { }
+
+    width: 40px;
+    height: 20px;
+    border-radius: self.height / 2;
+    in-out property <bool> active: false;
+    in property <color> inactive-color: theme.Colors.Info;
+    in property <color> active-color: theme.Colors.Primary;
+    in-out property <Theme> theme: themes.theme;
+    background: active ? active-color : inactive-color;
+    animate background { duration: 200ms; }
+    callback clicked <=> ta.clicked;
+
+    Rectangle {
+        height: (parent.height - parent.height / 5);
+        background: white;
+        border-radius: self.height;
+        width: self.height;
+        x: active ? parent.width + (parent.height / 10) - parent.height : parent.height / 10;
+        animate x { duration: 200ms; }
+    }
+
+    ta := TouchArea {
+        clicked => {
+            active = !active;
+        }
+    }
+}

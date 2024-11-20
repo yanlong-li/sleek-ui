@@ -41,20 +41,22 @@ component example{
 
 ### Message Box Example
 
+![img.png](images/msg-box.png)
+
 #### Attributes
 
-| Attribute | Description         | type        | Default | Accepted values                             |
-|-----------|---------------------|-------------|---------|---------------------------------------------|
-|title|head title|string|||
-|message|body content|string|||
-|confirm-button-text| Confirm button text |string|Confirm||
-|show-cancel-button| Display the cancel button |bool|false||
-|cancel-button-text| Cancel button text|string|Cancel||
+| Attribute           | Description               | type   | Default | Accepted values |
+|---------------------|---------------------------|--------|---------|-----------------|
+| title               | head title                | string |         |                 |
+| message             | body content              | string |         |                 |
+| confirm-button-text | Confirm button text       | string | Confirm |                 |
+| show-cancel-button  | Display the cancel button | bool   | false   |                 |
+| cancel-button-text  | Cancel button text        | string | Cancel  |                 |
 
 #### Example Code
 
 ```slint
-components example{
+component example{
         MessageBox {
             title: "MessageBox Title";
             message: "MessageBox Content";
@@ -76,6 +78,29 @@ components example{
             cancel-clicked => {
                 debug("cancel clicked")
             }
+        }
+}
+```
+
+### Switch Example
+
+![img.png](images/switch.png)
+
+#### Attributes
+
+| Attribute      | Description    | type  | Default | Accepted values |
+|----------------|----------------|-------|---------|-----------------|
+| active         | active status  | bool  | true    |                 |
+| inactive-color | inactive color | color |         |                 |
+| active-color   | active color   | color |         |                 |
+
+#### Example Code
+
+```slint
+component example{
+        Switch {
+            width: 40px;
+            height: 20px;
         }
 }
 ```

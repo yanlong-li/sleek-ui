@@ -3,7 +3,7 @@ import { Theme,Themes } from "../themes/index.slint";
 
 
 export component MessageBox inherits Rectangle {
-    _themes := Themes { }
+    themes := Themes { }
 
     height: confirmWidget.y + confirmWidget.height + 15px;
     width: max(titleWidget.width,contentWidget.width,confirmWidget.width) + 30px;
@@ -19,7 +19,7 @@ export component MessageBox inherits Rectangle {
     in property <string> message: "Message Box Message";
     in property <string> confirm-button-text: "Confirm";
     in property <string> cancel-button-text: "Cancel";
-    in property <Theme> theme: _themes.theme;
+    in property <Theme> theme: themes.theme;
     in property <bool> show-cancel-button: false;
     in property <ButtonType> confirm-button-type: ButtonType.Primary;
     in property <ButtonType> cancel-button-type: ButtonType.Default;

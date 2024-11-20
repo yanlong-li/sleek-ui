@@ -1,0 +1,41 @@
+import { Switch } from "../sleek.slint";
+import { VerticalBox } from "std-widgets.slint";
+import { Title } from "title.slint";
+
+export component Switchs inherits Window {
+    VerticalBox {
+        title := Title {
+            text: "Switch";
+        }
+
+        Switch {
+            width: 40px;
+            height: 20px;
+            active: false;
+        }
+
+        Switch {
+            width: 40px;
+            height: 20px;
+            active: true;
+        }
+
+        Switch {
+            width: 40px;
+            height: 20px;
+            inactive-color: red;
+            active: false;
+        }
+
+        Switch {
+            width: 40px;
+            height: 20px;
+            active: true;
+            active-color: green;
+            clicked => {
+                self.active = !self.active;
+                debug("debug")
+            }
+        }
+    }
+}
